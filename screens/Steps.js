@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { ThemeContext } from '../ThemeContext'; // Import your ThemeContext
-import stepsData from '../stepsData'; // Import the steps data
+import stepsData from '../Sample Data/stepsData'; // Import the steps data
 
 const Steps = () => {
   const { darkMode } = useContext(ThemeContext); // Access dark mode from the context
