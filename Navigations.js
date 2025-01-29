@@ -24,7 +24,7 @@ export default function Navigations() {
               iconName = focused ? 'home' : 'home-outline';
             } else if (route.name === 'Exercise') {
               iconName = focused ? 'barbell' : 'barbell-outline';
-            } else if (route.name === 'Steps') {
+            } else if (route.name === 'Workout') {
               iconName = focused ? 'walk' : 'walk-outline';
             } else if (route.name === 'Settings') {
               iconName = focused ? 'settings' : 'settings-outline';
@@ -45,7 +45,7 @@ export default function Navigations() {
       >
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Exercise" component={Exercise} />
-        <Tab.Screen name="Steps" component={Steps} />
+        <Tab.Screen name="Workout" component={Steps} />
         <Tab.Screen name="Settings" component={Settings} />
       </Tab.Navigator>
     </NavigationContainer>
