@@ -1,27 +1,29 @@
 import React, { useContext } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { ThemeContext } from '../ThemeContext'; // Import your ThemeContext
-import stepsData from '../Sample Data/stepsData'; // Import the steps data
-import { LineChart } from 'react-native-chart-kit'; // Import the LineChart component
-import { Dimensions } from 'react-native'; // Import Dimensions for screen width
+import { ThemeContext } from '../ThemeContext'; 
+import stepsData from '../Sample Data/stepsData'; 
+import { LineChart } from 'react-native-chart-kit'; 
+import { Dimensions } from 'react-native'; 
 
-const { width } = Dimensions.get('window'); // Get screen width to set chart width
+const { width } = Dimensions.get('window'); 
 
 const Steps = () => {
-  const { darkMode } = useContext(ThemeContext); // Access dark mode from the context
 
-  // Prepare the data for the graph
+    
+  const { darkMode } = useContext(ThemeContext); 
+
+ 
   const stepCounts = stepsData.map((data) => data.totalSteps);
   const caloriesBurnt = stepsData.map((data) => data.caloriesBurnt);
 
-  // Graph data and configuration
+  
   const data = {
-    labels: stepsData.map((data) => `Day ${data.id}`), // Day labels for the graph
+    labels: stepsData.map((data) => `Day ${data.id}`), 
     datasets: [
       {
-        data: stepCounts, // Total steps as the data for the graph
-        strokeWidth: 2, // Line thickness
-        color: (opacity = 1) => `rgba(0, 123, 255, ${opacity})`, // Line color
+        data: stepCounts, 
+        strokeWidth: 3, 
+        color: (opacity = 1) => `rgba(0, 123, 255, ${opacity})`, 
       },
     ],
   };
@@ -31,40 +33,50 @@ const Steps = () => {
     backgroundGradientFrom: darkMode ? '#333' : '#fff',
     backgroundGradientTo: darkMode ? '#444' : '#f4f4f4',
     decimalPlaces: 0,
-    color: (opacity = 1) => `rgba(0, 123, 255, ${opacity})`, // Line color
+    color: (opacity = 1) => `rgba(0, 123, 255, ${opacity})`,
     labelColor: (opacity = 1) => `rgba(${darkMode ? '255, 255, 255' : '0, 0, 0'}, ${opacity})`,
     style: {
       borderRadius: 16,
     },
     propsForDots: {
       r: '6',
-      strokeWidth: '2',
+      strokeWidth: '3',
       stroke: '#ffa726',
     },
   };
 
   return (
-    <ScrollView style={[styles.container, { backgroundColor: darkMode ? '#333' : '#fff' }]}>
-      <Text style={[styles.heading, { color: darkMode ? '#fff' : '#000' }]}>Steps Data</Text>
+    <ScrollView style={[styles.container, { backgroundColor: darkMode ? '#000' : '#fff' }]}>
+      <Text style={[styles.heading, { color: '#f20c55' }]}>Workout Data</Text>
 
-      {/* Display the Graph */}
+      
       <LineChart
         data={data}
-        width={width - 32} // Set chart width based on screen size
-        height={220} // Set chart height
+        width={width - 32} 
+        height={220}
         chartConfig={graphConfig}
-        verticalLabelRotation={30} // Rotate the labels for better visibility
-        style={{ marginVertical: 8, borderRadius: 16 }}
+        verticalLabelRotation={30} 
+        style={[styles.chart, { borderRadius: 16 }]}
       />
 
-      {/* Display the data below the graph */}
+      
       {stepsData.map((data) => (
         <View key={data.id} style={[styles.card, { backgroundColor: darkMode ? '#444' : '#f9f9f9' }]}>
-          <Text style={[styles.cardTitle, { color: darkMode ? '#fff' : '#333' }]}>Total Steps: {data.totalSteps}</Text>
-          <Text style={[styles.cardText, { color: darkMode ? '#fff' : '#555' }]}>Calories Burnt: {data.caloriesBurnt} kcal</Text>
-          <Text style={[styles.cardText, { color: darkMode ? '#fff' : '#555' }]}>Distance Traveled: {data.distanceTraveled}</Text>
-          <Text style={[styles.cardText, { color: darkMode ? '#fff' : '#555' }]}>Time Taken: {data.timeTaken}</Text>
-          <Text style={[styles.cardText, { color: darkMode ? '#fff' : '#555' }]}>Oxygen Percentage: {data.oxygenPercentage}</Text>
+          <Text style={[styles.cardTitle, { color: darkMode ? '#d6f205' : '#ee05f2' }]}>
+            Total Steps: {data.totalSteps}
+          </Text>
+          <Text style={[styles.cardText, { color: darkMode ? '#fff' : '#555' }]}>
+            Calories Burnt: {data.caloriesBurnt} kcal
+          </Text>
+          <Text style={[styles.cardText, { color: darkMode ? '#fff' : '#555' }]}>
+            Distance Traveled: {data.distanceTraveled}
+          </Text>
+          <Text style={[styles.cardText, { color: darkMode ? '#fff' : '#555' }]}>
+            Time Taken: {data.timeTaken}
+          </Text>
+          <Text style={[styles.cardText, { color: darkMode ? '#fff' : '#555' }]}>
+            Oxygen Percentage: {data.oxygenPercentage}
+          </Text>
         </View>
       ))}
     </ScrollView>
@@ -77,11 +89,16 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   heading: {
-    fontSize: 26,
+    fontSize: 40,
+    fontWeight: 'bold',
     marginBottom: 20,
     textAlign: 'center',
-    fontWeight: 'bold',
     textTransform: 'uppercase',
+    letterSpacing: 1.2,
+  },
+  chart: {
+    marginVertical: 16,
+    borderRadius: 16,
   },
   card: {
     borderRadius: 15,
@@ -98,16 +115,18 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     paddingHorizontal: 20,
     paddingVertical: 16,
+    flexDirection: 'column',
   },
   cardTitle: {
     fontSize: 22,
     fontWeight: 'bold',
-    marginBottom: 12,
+    marginBottom: 10,
     color: '#333',
+    textTransform: 'capitalize',
   },
   cardText: {
     fontSize: 16,
-    marginBottom: 8,
+    marginBottom: 6,
     color: '#555',
   },
 });

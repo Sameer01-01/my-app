@@ -1,10 +1,9 @@
 // exerciseData.js
-import i1 from '../assets/img1.png';
+
 const exerciseData = [
     {
       id: 4,
       name: 'Push Up',
-      image: i1.png,  // Replace with your image URL
       description: 'Description :- A basic upper body exercise that strengthens the arms, chest, and core.',
       instructions: 'Instructions :- Start in a plank position. Lower your body until your chest nearly touches the ground, then push back up.',
     },

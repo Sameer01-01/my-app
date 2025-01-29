@@ -14,7 +14,7 @@ export const ThemeProvider = ({ children }) => {
 
   // Determine the background color and text color based on darkMode
   const theme = {
-    backgroundColor: darkMode ? '#121212' : '#ffffff', // Dark or light background
+    backgroundColor: darkMode ? '#000000' : '#ffffff', // Dark or light background
     textColor: darkMode ? '#ffffff' : '#000000', // Dark or light text
     statusBarStyle: darkMode ? 'light-content' : 'dark-content', // Status bar style
   };
